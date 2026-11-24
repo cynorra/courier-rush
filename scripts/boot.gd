@@ -117,7 +117,7 @@ func _set_screen(name: String) -> Control:
     return screen
 
 
-func _margin(parent: Control, px: int = 24) -> MarginContainer:
+func _margin(parent: Node, px: int = 24) -> MarginContainer:
     var m := MarginContainer.new()
     m.set_anchors_preset(Control.PRESET_FULL_RECT)
     m.mouse_filter = Control.MOUSE_FILTER_IGNORE
