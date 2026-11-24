@@ -1,5 +1,9 @@
 class_name Vehicle extends Node3D
 
+# Tuning multipliers set by the garage (1.0 = stock).
+var power: float = 1.0
+var grip: float = 1.0
+
 # Nodes
 
 @onready var sphere: RigidBody3D = $Sphere
@@ -57,7 +61,7 @@ func _physics_process(delta):
 
 	var steering_grip = clamp(abs(linear_speed), 0.2, 1.0)
 
-	var target_angular = -input.x * steering_grip * 4 * direction
+	var target_angular = -input.x * steering_grip * 4 * direction * grip
 	angular_speed = lerp(angular_speed, target_angular, delta * 4)
 
 	vehicle_model.rotate_y(angular_speed * delta)
@@ -116,7 +120,7 @@ func handle_input(delta):
 		input.x = Input.get_axis("left", "right")
 		input.z = Input.get_axis("back", "forward")
 
-	sphere.angular_velocity += vehicle_model.get_global_transform().basis.x * (linear_speed * 100) * delta
+	sphere.angular_velocity += vehicle_model.get_global_transform().basis.x * (linear_speed * 100 * power) * delta
 
 func effect_body(delta):
 	

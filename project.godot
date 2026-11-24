@@ -15,17 +15,26 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Courier Rush"
-config/tags=PackedStringArray("starterkit")
-run/main_scene="res://scenes/main.tscn"
-config/features=PackedStringArray("4.6", "Forward Plus")
+run/main_scene="res://scenes/boot.tscn"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+config/quit_on_go_back=false
 boot_splash/bg_color=Color(0.921875, 0.921875, 0.957031, 1)
 boot_splash/image="res://splash-screen.png"
 config/icon="res://icon.png"
+
+[autoload]
+
+Save="*res://scripts/save.gd"
+Tr="*res://scripts/tr.gd"
+Ads="*res://scripts/ads.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=4
 
 [editor]
 
@@ -78,9 +87,21 @@ bounce={
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
 environment/ssao/quality=3
 environment/ssao/half_size=false
 environment/ssao/fadeout_from=500.0
 environment/ssao/fadeout_to=2000.0
 anti_aliasing/quality/msaa_3d=2
+
+[admob]
+
+general/android/app_id="ca-app-pub-4674211063760769~5041164876"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/admob/plugin.cfg")
